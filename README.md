@@ -4,7 +4,7 @@ Sistem Informasi Manajemen Bimbingan Konseling (BK) dan Pencatatan Poin Kredit K
 
 ---
 
-## 🚀 Fitur Utama
+## Fitur Utama
 1. **Dashboard Khusus Aktor**: Desain modern berbasis *glassmorphic* dengan menu navigasi & infografis grafik (Chart.js) berbeda untuk Admin, Guru BK, Wali Kelas, Kepsek, dan Siswa.
 2. **Manajemen Data Master**: Pengelolaan data siswa, kelas, guru, tahun ajaran aktif, serta kategori pelanggaran dan prestasi.
 3. **Pencatatan Pelanggaran & Prestasi**: Sistem poin kredit otomatis (pengurangan & penambahan poin) yang terintegrasi dengan WhatsApp Gateway.
@@ -15,7 +15,7 @@ Sistem Informasi Manajemen Bimbingan Konseling (BK) dan Pencatatan Poin Kredit K
 
 ---
 
-## 🔄 Hak Akses & Alur Kerja (Workflows)
+## Hak Akses & Alur Kerja (Workflows)
 
 Sistem ini didesain dengan hak akses berbasis peran (*Role-Based Access Control*) yang memisahkan tugas dan alur kerja masing-masing aktor:
 
@@ -44,7 +44,7 @@ Sistem ini didesain dengan hak akses berbasis peran (*Role-Based Access Control*
 
 ---
 
-## 📋 Prasyarat Sistem
+## Prasyarat Sistem
 
 Sebelum memulai instalasi, pastikan lingkungan lokal Anda memenuhi persyaratan berikut:
 * **PHP**: Versi **8.3** atau lebih tinggi (sangat direkomendasikan PHP 8.3.x)
@@ -55,7 +55,7 @@ Sebelum memulai instalasi, pastikan lingkungan lokal Anda memenuhi persyaratan b
 
 ---
 
-## 🛠️ Langkah Instalasi (Setup Project)
+## Langkah Instalasi (Setup Project)
 
 Ikuti langkah-langkah di bawah ini untuk menjalankan aplikasi pada server lokal Anda:
 
@@ -124,7 +124,7 @@ Aplikasi kini dapat diakses melalui browser di alamat: `http://127.0.0.1:8000`
 
 ---
 
-## 🔑 Informasi Login (Aktor Pengguna)
+## Informasi Login (Aktor Pengguna)
 
 Setelah database berhasil di-seed, Anda dapat menggunakan akun demo berikut untuk masuk ke sistem sesuai peran masing-masing (semua akun menggunakan password default: **`password`**):
 
