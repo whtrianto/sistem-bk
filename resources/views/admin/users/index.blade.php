@@ -44,6 +44,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>No. WhatsApp</th>
@@ -55,6 +56,7 @@
                 <tbody>
                     @forelse($users as $user)
                         <tr>
+                            <td>{{ $users->firstItem() + $loop->index }}</td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-initials bg-light text-dark border me-3">{{ substr($user->name, 0, 1) }}</div>
@@ -99,7 +101,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center py-5 text-muted">Akun pengguna tidak ditemukan.</td>
+                            <td colspan="7" class="text-center py-5 text-muted">Akun pengguna tidak ditemukan.</td>
                         </tr>
                     @endforelse
                 </tbody>

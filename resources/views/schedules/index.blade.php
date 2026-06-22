@@ -15,6 +15,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>Siswa</th>
                         <th>Kelas</th>
                         <th>Konselor (Guru BK)</th>
@@ -28,6 +29,7 @@
                 <tbody>
                     @forelse($schedules as $sch)
                         <tr>
+                            <td>{{ $schedules->firstItem() + $loop->index }}</td>
                             <td>
                                 <div class="fw-bold text-dark">{{ $sch->student->user->name }}</div>
                                 <small class="text-muted">{{ $sch->student->nis }}</small>
@@ -88,7 +90,7 @@
                                                 </div>
                                             </div>
                                         @endif
-
+ 
                                         @if($sch->status === 'approved')
                                             <form action="{{ route('schedules.complete', $sch) }}" method="POST" class="d-inline">
                                                 @csrf
@@ -96,7 +98,7 @@
                                             </form>
                                         @endif
                                     @endif
-
+ 
                                     <!-- Delete / Cancel Action -->
                                     @if(auth()->user()->isSiswa() && $sch->status === 'pending')
                                         <form action="{{ route('schedules.destroy', $sch) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin membatalkan pengajuan ini?')">
@@ -118,7 +120,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center py-5 text-muted">Belum ada pengajuan jadwal konseling.</td>
+                            <td colspan="9" class="text-center py-5 text-muted">Belum ada pengajuan jadwal konseling.</td>
                         </tr>
                     @endforelse
                 </tbody>

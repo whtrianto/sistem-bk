@@ -105,6 +105,18 @@
                                 <span>Jadwal Konseling</span>
                             </a>
                         </li>
+                        <li class="nav-item {{ Route::is('violations.*') ? 'active' : '' }}">
+                            <a href="{{ route('violations.index') }}" class="nav-link">
+                                <i class="bi bi-exclamation-octagon"></i>
+                                <span>Catatan Pelanggaran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ Route::is('achievements.*') ? 'active' : '' }}">
+                            <a href="{{ route('achievements.index') }}" class="nav-link">
+                                <i class="bi bi-trophy"></i>
+                                <span>Catatan Prestasi</span>
+                            </a>
+                        </li>
                         <li class="nav-item {{ Route::is('points.*') ? 'active' : '' }}">
                             <a href="{{ route('points.index') }}" class="nav-link">
                                 <i class="bi bi-star"></i>

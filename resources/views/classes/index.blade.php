@@ -14,6 +14,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>Tingkat</th>
                         <th>Nama Kelas</th>
                         <th>Kompetensi Keahlian (Jurusan)</th>
@@ -25,6 +26,7 @@
                 <tbody>
                     @forelse($classes as $class)
                         <tr>
+                            <td>{{ $classes->firstItem() + $loop->index }}</td>
                             <td class="fw-bold fs-5 text-secondary">{{ $class->level }}</td>
                             <td class="fw-bold text-dark">{{ $class->name }}</td>
                             <td>{{ $class->major ?? '-' }}</td>
@@ -51,7 +53,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center py-5 text-muted">Belum ada data kelas.</td>
+                            <td colspan="7" class="text-center py-5 text-muted">Belum ada data kelas.</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -34,6 +34,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>Tanggal</th>
                         <th>Siswa</th>
                         <th>Kelas</th>
@@ -49,6 +50,7 @@
                 <tbody>
                     @forelse($achievements as $ach)
                         <tr>
+                            <td>{{ $achievements->firstItem() + $loop->index }}</td>
                             <td>{{ $ach->date->format('d/m/Y') }}</td>
                             <td class="fw-bold text-dark">{{ $ach->student->user->name }}</td>
                             <td>{{ $ach->student->schoolClass->full_name ?? '-' }}</td>
@@ -70,7 +72,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center py-5 text-muted">Belum ada riwayat prestasi dicatat.</td>
+                            <td colspan="{{ (auth()->user()->isGuruBK() || auth()->user()->isAdmin()) ? 9 : 8 }}" class="text-center py-5 text-muted">Belum ada riwayat prestasi dicatat.</td>
                         </tr>
                     @endforelse
                 </tbody>

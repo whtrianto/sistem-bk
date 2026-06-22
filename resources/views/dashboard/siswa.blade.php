@@ -92,6 +92,7 @@
                     <table class="table custom-table align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 60px;">No.</th>
                                 <th>Konselor</th>
                                 <th>Tanggal & Waktu</th>
                                 <th>Status</th>
@@ -100,6 +101,7 @@
                         <tbody>
                             @forelse($mySchedules as $sch)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $sch->counselor->name }}</td>
                                     <td>
                                         <span class="d-block fw-semibold">{{ $sch->date->format('d/m/Y') }}</span>
@@ -119,7 +121,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-center py-3 text-muted">Belum ada pengajuan konseling.</td>
+                                    <td colspan="4" class="text-center py-3 text-muted">Belum ada pengajuan konseling.</td>
                                 </tr>
                             @endforelse
                         </tbody>

@@ -40,6 +40,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>NIP</th>
                         <th>Nama</th>
                         <th>Email</th>
@@ -52,6 +53,7 @@
                 <tbody>
                     @forelse($teachers as $user)
                         <tr>
+                            <td>{{ $teachers->firstItem() + $loop->index }}</td>
                             <td class="fw-semibold text-secondary">{{ $user->teacher->nip ?? '-' }}</td>
                             <td class="fw-bold text-dark">{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
@@ -75,7 +77,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center py-5 text-muted">Data guru tidak ditemukan.</td>
+                            <td colspan="8" class="text-center py-5 text-muted">Data guru tidak ditemukan.</td>
                         </tr>
                     @endforelse
                 </tbody>

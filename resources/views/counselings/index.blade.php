@@ -60,6 +60,7 @@
                 <table class="table custom-table align-middle">
                     <thead>
                         <tr>
+                            <th style="width: 60px;">No.</th>
                             <th>Tanggal</th>
                             <th>Siswa</th>
                             <th>Kelas</th>
@@ -73,6 +74,7 @@
                     <tbody>
                         @forelse($counselings as $counseling)
                             <tr>
+                                <td>{{ $counselings->firstItem() + $loop->index }}</td>
                                 <td>{{ $counseling->date->format('d/m/Y') }}</td>
                                 <td class="fw-bold text-dark">{{ $counseling->student->user->name }}</td>
                                 <td>{{ $counseling->student->schoolClass->full_name ?? '-' }}</td>
@@ -117,7 +119,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="text-center py-5 text-muted">Belum ada catatan konseling.</td>
+                                <td colspan="9" class="text-center py-5 text-muted">Belum ada catatan konseling.</td>
                             </tr>
                         @endforelse
                     </tbody>

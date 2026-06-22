@@ -104,6 +104,7 @@
                     <table class="table custom-table align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 60px;">No.</th>
                                 <th>Tingkat</th>
                                 <th>Nama Kelas</th>
                                 <th class="text-center">Total Kasus Pelanggaran</th>
@@ -113,6 +114,7 @@
                         <tbody>
                             @forelse($violationByClass as $vc)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td class="fw-bold">{{ $vc->level }}</td>
                                     <td>{{ $vc->class_name }}</td>
                                     <td class="text-center fw-bold">{{ $vc->total }}</td>
@@ -128,7 +130,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="text-center py-4 text-muted">Belum ada pelanggaran yang dicatat per kelas.</td>
+                                    <td colspan="5" class="text-center py-4 text-muted">Belum ada pelanggaran yang dicatat per kelas.</td>
                                 </tr>
                             @endforelse
                         </tbody>

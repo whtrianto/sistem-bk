@@ -14,6 +14,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>Nama Pelanggaran</th>
                         <th>Kategori</th>
                         <th>Bobot Poin</th>
@@ -24,6 +25,7 @@
                 <tbody>
                     @forelse($types as $type)
                         <tr>
+                            <td>{{ $types->firstItem() + $loop->index }}</td>
                             <td class="fw-bold text-dark">{{ $type->name }}</td>
                             <td>
                                 <span class="badge badge-custom badge-{{ $type->category }}">{{ $type->category }}</span>
@@ -43,7 +45,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center py-5 text-muted">Belum ada kategori pelanggaran.</td>
+                            <td colspan="6" class="text-center py-5 text-muted">Belum ada kategori pelanggaran.</td>
                         </tr>
                     @endforelse
                 </tbody>

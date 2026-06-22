@@ -84,6 +84,7 @@
                             <table class="table custom-table align-middle">
                                 <thead>
                                     <tr>
+                                        <th style="width: 60px;">No.</th>
                                         <th>NIS</th>
                                         <th>Nama Siswa</th>
                                         <th>Poin Saat Ini</th>
@@ -92,6 +93,7 @@
                                 <tbody>
                                     @forelse($class->students as $student)
                                         <tr>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $student->nis }}</td>
                                             <td>
                                                 <a href="{{ route('points.show', $student->id) }}" class="text-decoration-none fw-semibold text-dark">
@@ -106,7 +108,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="3" class="text-center py-3 text-muted">Belum ada siswa di kelas ini.</td>
+                                            <td colspan="4" class="text-center py-3 text-muted">Belum ada siswa di kelas ini.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

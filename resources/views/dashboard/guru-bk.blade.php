@@ -102,6 +102,7 @@
                     <table class="table custom-table align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 60px;">No.</th>
                                 <th>Siswa</th>
                                 <th>Pelanggaran</th>
                                 <th>Poin</th>
@@ -110,6 +111,7 @@
                         <tbody>
                             @forelse($recentViolations as $violation)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <span class="fw-bold d-block">{{ $violation->student->user->name }}</span>
                                         <small class="text-muted">{{ $violation->student->schoolClass->full_name }}</small>
@@ -121,7 +123,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-center py-4 text-muted">Tidak ada pelanggaran tercatat.</td>
+                                    <td colspan="4" class="text-center py-4 text-muted">Tidak ada pelanggaran tercatat.</td>
                                 </tr>
                             @endforelse
                         </tbody>

@@ -137,6 +137,7 @@
                     <table class="table custom-table align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 60px;">No.</th>
                                 <th>Tanggal</th>
                                 <th>Pelanggaran</th>
                                 <th>Kategori</th>
@@ -147,6 +148,7 @@
                         <tbody>
                             @forelse($student->violations as $violation)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $violation->date->format('d/m/Y') }}</td>
                                     <td class="fw-bold">{{ $violation->violationType->name }}</td>
                                     <td>
@@ -157,7 +159,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center py-4 text-muted">Tidak ada catatan pelanggaran untuk siswa ini.</td>
+                                    <td colspan="6" class="text-center py-4 text-muted">Tidak ada catatan pelanggaran untuk siswa ini.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -171,6 +173,7 @@
                     <table class="table custom-table align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 60px;">No.</th>
                                 <th>Tanggal</th>
                                 <th>Prestasi</th>
                                 <th>Kategori</th>
@@ -181,6 +184,7 @@
                         <tbody>
                             @forelse($student->achievements as $achievement)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $achievement->date->format('d/m/Y') }}</td>
                                     <td class="fw-bold">{{ $achievement->achievementType->name }}</td>
                                     <td>
@@ -191,7 +195,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center py-4 text-muted">Tidak ada catatan prestasi untuk siswa ini.</td>
+                                    <td colspan="6" class="text-center py-4 text-muted">Tidak ada catatan prestasi untuk siswa ini.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -205,6 +209,7 @@
                     <table class="table custom-table align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 60px;">No.</th>
                                 <th>Tanggal</th>
                                 <th>Kategori</th>
                                 <th>Konselor</th>
@@ -216,6 +221,7 @@
                         <tbody>
                             @forelse($student->counselings as $counseling)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $counseling->date->format('d/m/Y') }}</td>
                                     <td>
                                         <span class="badge bg-light text-dark border px-3 py-2 rounded-pill"><i class="bi bi-tag-fill me-1" style="color: {{ $counseling->category->color }};"></i>{{ $counseling->category->name }}</span>
@@ -235,7 +241,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6" class="text-center py-4 text-muted">Tidak ada sesi konseling tercatat untuk siswa ini.</td>
+                                    <td colspan="7" class="text-center py-4 text-muted">Tidak ada sesi konseling tercatat untuk siswa ini.</td>
                                 </tr>
                             @endforelse
                         </tbody>

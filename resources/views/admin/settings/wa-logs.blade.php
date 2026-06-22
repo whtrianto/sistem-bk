@@ -15,6 +15,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>Waktu Kirim</th>
                         <th>Nomor Penerima</th>
                         <th>Kategori Pesan</th>
@@ -26,6 +27,7 @@
                 <tbody>
                     @forelse($logs as $log)
                         <tr>
+                            <td>{{ $logs->firstItem() + $loop->index }}</td>
                             <td>{{ $log->created_at->format('d/m/Y H:i:s') }}</td>
                             <td class="fw-semibold text-secondary">{{ $log->recipient_phone }}</td>
                             <td>
@@ -49,7 +51,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center py-5 text-muted">Belum ada riwayat pengiriman pesan WhatsApp.</td>
+                            <td colspan="7" class="text-center py-5 text-muted">Belum ada riwayat pengiriman pesan WhatsApp.</td>
                         </tr>
                     @endforelse
                 </tbody>

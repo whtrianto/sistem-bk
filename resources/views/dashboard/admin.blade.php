@@ -112,6 +112,7 @@
                     <table class="table custom-table align-middle">
                         <thead>
                             <tr>
+                                <th style="width: 60px;">No.</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Role</th>
@@ -121,6 +122,7 @@
                         <tbody>
                             @forelse($recentUsers as $user)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-initials me-3 bg-secondary-subtle text-secondary">{{ substr($user->name, 0, 1) }}</div>
@@ -141,7 +143,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="text-center py-4 text-muted">Belum ada data pengguna baru.</td>
+                                    <td colspan="5" class="text-center py-4 text-muted">Belum ada data pengguna baru.</td>
                                 </tr>
                             @endforelse
                         </tbody>

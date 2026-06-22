@@ -14,6 +14,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>Tahun Ajaran</th>
                         <th>Semester</th>
                         <th>Status</th>
@@ -23,6 +24,7 @@
                 <tbody>
                     @forelse($years as $year)
                         <tr>
+                            <td>{{ $years->firstItem() + $loop->index }}</td>
                             <td class="fw-bold text-dark fs-5">{{ $year->year }}</td>
                             <td class="text-capitalize">{{ $year->semester }}</td>
                             <td>
@@ -51,7 +53,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center py-5 text-muted">Belum ada data tahun ajaran.</td>
+                            <td colspan="5" class="text-center py-5 text-muted">Belum ada data tahun ajaran.</td>
                         </tr>
                     @endforelse
                 </tbody>

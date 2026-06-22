@@ -15,6 +15,7 @@
             <table class="table custom-table align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 60px;">No.</th>
                         <th>No. Surat</th>
                         <th>Siswa</th>
                         <th>Kelas</th>
@@ -28,6 +29,7 @@
                 <tbody>
                     @forelse($letters as $letter)
                         <tr>
+                            <td>{{ $letters->firstItem() + $loop->index }}</td>
                             <td class="fw-semibold text-secondary">{{ $letter->letter_number }}</td>
                             <td class="fw-bold text-dark">{{ $letter->student->user->name }}</td>
                             <td>{{ $letter->student->schoolClass->full_name ?? '-' }}</td>
@@ -60,7 +62,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center py-5 text-muted">Belum ada surat panggilan dibuat.</td>
+                            <td colspan="9" class="text-center py-5 text-muted">Belum ada surat panggilan dibuat.</td>
                         </tr>
                     @endforelse
                 </tbody>
