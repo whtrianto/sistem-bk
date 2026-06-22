@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Counseling;
 use App\Models\Violation;
-use App\Models\Achievement;
 use App\Models\Student;
 use App\Models\CounselingCategory;
 use Illuminate\Http\Request;
@@ -26,11 +25,6 @@ class ReportController extends Controller
         )->whereYear('date', $year)->groupBy(DB::raw('MONTH(date)'))->pluck('total', 'month')->toArray();
         $monthlyCounselings = array_values(array_replace(array_fill(1, 12, 0), $monthlyCounselings));
 
-        $monthlyAchievements = Achievement::select(
-            DB::raw('MONTH(date) as month'), DB::raw('COUNT(*) as total')
-        )->whereYear('date', $year)->groupBy(DB::raw('MONTH(date)'))->pluck('total', 'month')->toArray();
-        $monthlyAchievements = array_values(array_replace(array_fill(1, 12, 0), $monthlyAchievements));
-
         $categoryCounts = Counseling::select('category_id', DB::raw('COUNT(*) as total'))
             ->whereYear('date', $year)->groupBy('category_id')->with('category')->get();
 
@@ -41,12 +35,11 @@ class ReportController extends Controller
         $totalStats = [
             'violations' => Violation::whereYear('date', $year)->count(),
             'counselings' => Counseling::whereYear('date', $year)->count(),
-            'achievements' => Achievement::whereYear('date', $year)->count(),
             'students' => Student::count(),
         ];
 
         return view('reports.index', compact(
-            'year', 'monthlyViolations', 'monthlyCounselings', 'monthlyAchievements',
+            'year', 'monthlyViolations', 'monthlyCounselings',
             'categoryCounts', 'violationByCategory', 'totalStats'
         ));
     }

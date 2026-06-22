@@ -46,7 +46,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('classes', ClassController::class);
         Route::resource('teachers', TeacherController::class);
         Route::resource('violation-types', ViolationTypeController::class);
-        Route::resource('achievement-types', AchievementTypeController::class);
         Route::resource('academic-years', AcademicYearController::class);
         Route::post('academic-years/{academic_year}/toggle-active', [AcademicYearController::class, 'toggleActive'])->name('academic-years.toggle-active');
     });
@@ -56,10 +55,9 @@ Route::middleware('auth')->group(function () {
         Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show');
     });
 
-    // Access to Violations & Achievements (Admin, Guru BK, Wali Kelas)
+    // Access to Violations (Admin, Guru BK, Wali Kelas)
     Route::middleware('role:admin,guru_bk,wali_kelas')->group(function () {
         Route::resource('violations', ViolationController::class)->only(['index', 'create', 'store', 'destroy']);
-        Route::resource('achievements', AchievementController::class)->only(['index', 'create', 'store', 'destroy']);
     });
 
     // Access to Counseling (Admin, Guru BK, Wali Kelas)

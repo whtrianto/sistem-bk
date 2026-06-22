@@ -65,7 +65,7 @@
                             <td>{{ $student->schoolClass->full_name ?? 'Tanpa Kelas' }}</td>
                             <td>{{ $student->gender_label }}</td>
                             <td>
-                                <span class="badge bg-{{ $student->current_points >= 75 ? 'success' : ($student->current_points >= 50 ? 'warning' : 'danger') }} px-3 py-2 rounded-pill">
+                                <span class="badge bg-{{ $student->current_points <= 25 ? 'success' : ($student->current_points <= 50 ? 'warning' : 'danger') }} px-3 py-2 rounded-pill">
                                     {{ $student->current_points }} Poin
                                 </span>
                             </td>

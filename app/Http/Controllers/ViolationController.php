@@ -55,7 +55,7 @@ class ViolationController extends Controller
         ]);
 
         // Update student points
-        $student->current_points -= $violationType->points;
+        $student->current_points += $violationType->points;
         $student->save();
 
         // Record point history
@@ -63,7 +63,7 @@ class ViolationController extends Controller
             'student_id' => $student->id,
             'type' => 'violation',
             'reference_id' => $violation->id,
-            'points' => -$violationType->points,
+            'points' => $violationType->points,
             'balance_after' => $student->current_points,
             'description' => 'Pelanggaran: ' . $violationType->name,
             'date' => $request->date,
@@ -77,13 +77,13 @@ class ViolationController extends Controller
             $waService->sendViolationNotification($student, $violation);
         }
 
-        return redirect()->route('violations.index')->with('success', 'Pelanggaran berhasil dicatat. Poin siswa dikurangi ' . $violationType->points . ' poin.');
+        return redirect()->route('violations.index')->with('success', 'Pelanggaran berhasil dicatat. Poin siswa bertambah ' . $violationType->points . ' poin.');
     }
 
     public function destroy(Violation $violation)
     {
         $student = $violation->student;
-        $student->current_points += $violation->points_deducted;
+        $student->current_points -= $violation->points_deducted;
         $student->save();
 
         PointHistory::where('type', 'violation')->where('reference_id', $violation->id)->delete();

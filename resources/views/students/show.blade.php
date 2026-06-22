@@ -23,7 +23,7 @@
             <div class="col-md">
                 <div class="d-flex flex-wrap align-items-center gap-3 justify-content-center justify-content-md-start">
                     <h3 class="fw-bold m-0 text-dark">{{ $student->user->name }}</h3>
-                    <span class="badge bg-{{ $student->current_points >= 75 ? 'success' : ($student->current_points >= 50 ? 'warning' : 'danger') }} px-3 py-2 rounded-pill fs-7">
+                    <span class="badge bg-{{ $student->current_points <= 25 ? 'success' : ($student->current_points <= 50 ? 'warning' : 'danger') }} px-3 py-2 rounded-pill fs-7">
                         {{ $student->current_points }} Poin
                     </span>
                 </div>
@@ -44,19 +44,13 @@
 
     <!-- Quick Stats Cards Row -->
     <div class="row g-4 mb-4">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card border-0 glass-card p-3 text-center">
                 <h6 class="text-muted mb-1">Total Pelanggaran</h6>
                 <h3 class="fw-bold m-0 text-danger">{{ $student->violations->count() }}</h3>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card border-0 glass-card p-3 text-center">
-                <h6 class="text-muted mb-1">Total Prestasi</h6>
-                <h3 class="fw-bold m-0 text-success">{{ $student->achievements->count() }}</h3>
-            </div>
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card border-0 glass-card p-3 text-center">
                 <h6 class="text-muted mb-1">Kasus Konseling</h6>
                 <h3 class="fw-bold m-0 text-primary">{{ $student->counselings->count() }}</h3>
@@ -73,9 +67,6 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="violations-tab" data-bs-toggle="tab" data-bs-target="#violations" type="button" role="tab" aria-controls="violations" aria-selected="false"><i class="bi bi-exclamation-octagon me-1"></i> Pelanggaran ({{ $student->violations->count() }})</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="achievements-tab" data-bs-toggle="tab" data-bs-target="#achievements" type="button" role="tab" aria-controls="achievements" aria-selected="false"><i class="bi bi-trophy me-1"></i> Prestasi ({{ $student->achievements->count() }})</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="counseling-tab" data-bs-toggle="tab" data-bs-target="#counseling" type="button" role="tab" aria-controls="counseling" aria-selected="false"><i class="bi bi-chat-heart me-1"></i> Konseling ({{ $student->counselings->count() }})</button>
@@ -155,7 +146,7 @@
                                         <span class="badge badge-custom badge-{{ $violation->violationType->category }}">{{ $violation->violationType->category }}</span>
                                     </td>
                                     <td>{{ $violation->description ?? '-' }}</td>
-                                    <td class="text-danger fw-bold">-{{ $violation->points_deducted }}</td>
+                                    <td class="text-danger fw-bold">+{{ $violation->points_deducted }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -167,41 +158,7 @@
                 </div>
             </div>
 
-            <!-- Achievements Tab -->
-            <div class="tab-pane fade" id="achievements" role="tabpanel" aria-labelledby="achievements-tab">
-                <div class="table-responsive">
-                    <table class="table custom-table align-middle">
-                        <thead>
-                            <tr>
-                                <th style="width: 60px;">No.</th>
-                                <th>Tanggal</th>
-                                <th>Prestasi</th>
-                                <th>Kategori</th>
-                                <th>Keterangan</th>
-                                <th>Poin</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($student->achievements as $achievement)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $achievement->date->format('d/m/Y') }}</td>
-                                    <td class="fw-bold">{{ $achievement->achievementType->name }}</td>
-                                    <td>
-                                        <span class="badge badge-custom badge-{{ $achievement->achievementType->category }}">{{ $achievement->achievementType->category }}</span>
-                                    </td>
-                                    <td>{{ $achievement->description ?? '-' }}</td>
-                                    <td class="text-success fw-bold">+{{ $achievement->points_added }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center py-4 text-muted">Tidak ada catatan prestasi untuk siswa ini.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+
 
             <!-- Counseling Tab -->
             <div class="tab-pane fade" id="counseling" role="tabpanel" aria-labelledby="counseling-tab">
@@ -254,11 +211,11 @@
                 <div class="timeline mt-3">
                     @forelse($student->pointHistories as $log)
                         <div class="timeline-item">
-                            <div class="timeline-marker {{ $log->points < 0 ? 'deduction' : 'addition' }}"></div>
+                            <div class="timeline-marker deduction"></div>
                             <div class="d-flex align-items-center justify-content-between mb-1">
                                 <span class="fw-bold text-dark">{{ $log->description }}</span>
-                                <span class="fw-bold text-{{ $log->points < 0 ? 'danger' : 'success' }}">
-                                    {{ $log->points < 0 ? '' : '+' }}{{ $log->points }} Poin
+                                <span class="fw-bold text-danger">
+                                    +{{ $log->points }} Poin
                                 </span>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">

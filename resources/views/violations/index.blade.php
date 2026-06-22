@@ -66,7 +66,7 @@
                             <td>
                                 <span class="badge badge-custom badge-{{ $violation->violationType->category }}">{{ $violation->violationType->category }}</span>
                             </td>
-                            <td class="text-danger fw-bold">-{{ $violation->points_deducted }} Poin</td>
+                            <td class="text-danger fw-bold">+{{ $violation->points_deducted }} Poin</td>
                             <td>{{ $violation->recorder->name }}</td>
                             <td class="text-center">
                                 <div class="d-flex align-items-center justify-content-center gap-2">
@@ -143,8 +143,8 @@
                         </div>
                         <div class="col-6">
                             <div class="p-3 rounded-4 border bg-white h-100 shadow-xs" style="border-color: rgba(0, 0, 0, 0.05) !important;">
-                                <small class="text-muted d-block mb-1 fs-8 text-uppercase fw-bold" style="letter-spacing: 0.5px;">Potongan Kredit</small>
-                                <span class="text-danger fw-bold fs-5"><i class="bi bi-dash"></i>{{ $violation->points_deducted }} Poin</span>
+                                <small class="text-muted d-block mb-1 fs-8 text-uppercase fw-bold" style="letter-spacing: 0.5px;">Poin Pelanggaran</small>
+                                <span class="text-danger fw-bold fs-5"><i class="bi bi-plus"></i>{{ $violation->points_deducted }} Poin</span>
                             </div>
                         </div>
                         <div class="col-6">

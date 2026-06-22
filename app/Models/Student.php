@@ -34,11 +34,6 @@ class Student extends Model
         return $this->hasMany(Violation::class);
     }
 
-    public function achievements()
-    {
-        return $this->hasMany(Achievement::class);
-    }
-
     public function counselings()
     {
         return $this->hasMany(Counseling::class);
@@ -57,8 +52,7 @@ class Student extends Model
     public function recalculatePoints(): void
     {
         $totalDeducted = $this->violations()->sum('points_deducted');
-        $totalAdded = $this->achievements()->sum('points_added');
-        $this->current_points = $this->initial_points - $totalDeducted + $totalAdded;
+        $this->current_points = $this->initial_points + $totalDeducted;
         $this->save();
     }
 

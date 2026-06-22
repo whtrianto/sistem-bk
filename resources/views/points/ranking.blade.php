@@ -11,7 +11,7 @@
             <a href="{{ route('points.index') }}" class="btn btn-link text-decoration-none p-0"><i class="bi bi-arrow-left"></i> Kembali ke Daftar Poin</a>
         @endif
         <h3 class="fw-bold mt-2 text-dark">Ranking Kedisiplinan Siswa</h3>
-        <p class="text-muted">Leaderboard top 50 siswa dengan pencapaian poin kedisiplinan tertinggi.</p>
+        <p class="text-muted">Leaderboard top 50 siswa terdisiplin dengan poin pelanggaran terendah.</p>
     </div>
 
     <!-- Leaderboard Table -->
@@ -39,7 +39,7 @@
                                 <div class="fw-bold text-dark">{{ $student->user->name }}</div>
                             </td>
                             <td>{{ $student->schoolClass->full_name ?? '-' }}</td>
-                            <td class="fw-bold text-success fs-5">{{ $student->current_points }}</td>
+                            <td class="fw-bold text-{{ $student->current_points <= 25 ? 'success' : ($student->current_points <= 50 ? 'warning' : 'danger') }} fs-5">{{ $student->current_points }}</td>
                             <td>
                                 @if($index === 0)
                                     <span class="fs-4 text-warning" title="Juara 1 Paling Disiplin"><i class="bi bi-trophy-fill"></i></span>

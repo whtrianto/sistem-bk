@@ -12,14 +12,14 @@
     <!-- Quick Stats row -->
     <div class="row g-4 mb-4">
         <!-- My Points Card -->
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
-                    <div class="stat-icon-box me-3 bg-{{ $currentPoints >= 75 ? 'success' : ($currentPoints >= 50 ? 'warning' : 'danger') }}-subtle text-{{ $currentPoints >= 75 ? 'success' : ($currentPoints >= 50 ? 'warning' : 'danger') }}">
+                    <div class="stat-icon-box me-3 bg-{{ $currentPoints <= 25 ? 'success' : ($currentPoints <= 50 ? 'warning' : 'danger') }}-subtle text-{{ $currentPoints <= 25 ? 'success' : ($currentPoints <= 50 ? 'warning' : 'danger') }}">
                         <i class="bi bi-star-fill"></i>
                     </div>
                     <div>
-                        <h6 class="text-muted mb-1">Poin Kredit Saya</h6>
+                        <h6 class="text-muted mb-1">Poin Pelanggaran Saya</h6>
                         <h3 class="fw-bold m-0">{{ $currentPoints }}</h3>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Total Violations Card -->
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-danger me-3">
@@ -36,21 +36,6 @@
                     <div>
                         <h6 class="text-muted mb-1">Jumlah Pelanggaran</h6>
                         <h3 class="fw-bold m-0">{{ $totalViolations }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Total Achievements Card -->
-        <div class="col-md-4">
-            <div class="card border-0 glass-card p-3">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon-box stat-icon-success me-3">
-                        <i class="bi bi-trophy-fill"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1">Jumlah Prestasi</h6>
-                        <h3 class="fw-bold m-0">{{ $totalAchievements }}</h3>
                     </div>
                 </div>
             </div>
@@ -138,11 +123,11 @@
                 <div class="timeline">
                     @forelse($recentHistory as $log)
                         <div class="timeline-item">
-                            <div class="timeline-marker {{ $log->points < 0 ? 'deduction' : 'addition' }}"></div>
+                            <div class="timeline-marker deduction"></div>
                             <div class="d-flex align-items-center justify-content-between mb-1">
                                 <span class="fw-bold text-dark">{{ $log->description }}</span>
-                                <span class="fw-bold text-{{ $log->points < 0 ? 'danger' : 'success' }}">
-                                    {{ $log->points < 0 ? '' : '+' }}{{ $log->points }} Poin
+                                <span class="fw-bold text-danger">
+                                    +{{ $log->points }} Poin
                                 </span>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">

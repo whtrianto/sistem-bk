@@ -11,7 +11,7 @@
 
     <!-- Quick Stats row -->
     <div class="row g-4 mb-4">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-primary me-3">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-danger me-3">
@@ -39,21 +39,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card border-0 glass-card p-3">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon-box stat-icon-success me-3">
-                        <i class="bi bi-trophy-fill"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1">Total Prestasi</h6>
-                        <h3 class="fw-bold m-0">{{ $totalAchievements }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-warning me-3">
@@ -101,7 +87,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <span class="badge bg-{{ $student->current_points >= 75 ? 'success' : ($student->current_points >= 50 ? 'warning' : 'danger') }} px-3 py-2 rounded-pill">
+                                                <span class="badge bg-{{ $student->current_points <= 25 ? 'success' : ($student->current_points <= 50 ? 'warning' : 'danger') }} px-3 py-2 rounded-pill">
                                                     {{ $student->current_points }} Poin
                                                 </span>
                                             </td>
@@ -133,7 +119,7 @@
                         <div class="list-group-item bg-transparent px-0 py-3 border-bottom">
                             <div class="d-flex align-items-center justify-content-between mb-1">
                                 <span class="fw-bold text-dark">{{ $violation->student->user->name }}</span>
-                                <span class="text-danger fw-bold">-{{ $violation->points_deducted }} Poin</span>
+                                <span class="text-danger fw-bold">+{{ $violation->points_deducted }} Poin</span>
                             </div>
                             <span class="badge badge-custom badge-{{ $violation->violationType->category }} mb-2">{{ $violation->violationType->name }}</span>
                             <div class="d-flex align-items-center justify-content-between">

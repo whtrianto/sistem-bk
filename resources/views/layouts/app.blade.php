@@ -85,12 +85,6 @@
                                 <span>Kategori Pelanggaran</span>
                             </a>
                         </li>
-                        <li class="nav-item {{ Route::is('achievement-types.*') ? 'active' : '' }}">
-                            <a href="{{ route('achievement-types.index') }}" class="nav-link">
-                                <i class="bi bi-trophy"></i>
-                                <span>Kategori Prestasi</span>
-                            </a>
-                        </li>
 
                         <li class="nav-header">Bimbingan & Poin</li>
                         <li class="nav-item {{ Route::is('counselings.*') ? 'active' : '' }}">
@@ -109,12 +103,6 @@
                             <a href="{{ route('violations.index') }}" class="nav-link">
                                 <i class="bi bi-exclamation-octagon"></i>
                                 <span>Catatan Pelanggaran</span>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ Route::is('achievements.*') ? 'active' : '' }}">
-                            <a href="{{ route('achievements.index') }}" class="nav-link">
-                                <i class="bi bi-trophy"></i>
-                                <span>Catatan Prestasi</span>
                             </a>
                         </li>
                         <li class="nav-item {{ Route::is('points.*') ? 'active' : '' }}">
@@ -186,12 +174,6 @@
                                 <span>Catatan Pelanggaran</span>
                             </a>
                         </li>
-                        <li class="nav-item {{ Route::is('achievements.*') ? 'active' : '' }}">
-                            <a href="{{ route('achievements.index') }}" class="nav-link">
-                                <i class="bi bi-trophy"></i>
-                                <span>Catatan Prestasi</span>
-                            </a>
-                        </li>
                         <li class="nav-item {{ Route::is('points.*') ? 'active' : '' }}">
                             <a href="{{ route('points.index') }}" class="nav-link">
                                 <i class="bi bi-star"></i>
@@ -227,12 +209,6 @@
                             <a href="{{ route('violations.index') }}" class="nav-link">
                                 <i class="bi bi-exclamation-octagon"></i>
                                 <span>Pelanggaran Siswa</span>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ Route::is('achievements.*') ? 'active' : '' }}">
-                            <a href="{{ route('achievements.index') }}" class="nav-link">
-                                <i class="bi bi-trophy"></i>
-                                <span>Prestasi Siswa</span>
                             </a>
                         </li>
                         <li class="nav-item {{ Route::is('points.*') ? 'active' : '' }}">

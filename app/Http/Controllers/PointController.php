@@ -42,7 +42,7 @@ class PointController extends Controller
     public function ranking()
     {
         $students = Student::with('user', 'schoolClass')
-            ->orderByDesc('current_points')
+            ->orderBy('current_points', 'asc')
             ->take(50)
             ->get();
         return view('points.ranking', compact('students'));

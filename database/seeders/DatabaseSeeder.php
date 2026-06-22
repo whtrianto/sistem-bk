@@ -10,10 +10,8 @@ use App\Models\AcademicYear;
 use App\Models\SchoolSetting;
 use App\Models\CounselingCategory;
 use App\Models\ViolationType;
-use App\Models\AchievementType;
 use App\Models\Counseling;
 use App\Models\Violation;
-use App\Models\Achievement;
 use App\Models\PointHistory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -33,9 +31,9 @@ class DatabaseSeeder extends Seeder
             'principal_nip' => '196501011990031001',
             'wa_api_token' => '',
             'wa_api_url' => 'https://api.fonnte.com/send',
-            'initial_student_points' => '100',
-            'warning_point_threshold' => '50',
-            'critical_point_threshold' => '25',
+            'initial_student_points' => '0',
+            'warning_point_threshold' => '25',
+            'critical_point_threshold' => '50',
         ];
         foreach ($settings as $key => $value) {
             SchoolSetting::setValue($key, $value);
@@ -74,20 +72,6 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($violationTypes as $vt) {
             ViolationType::create($vt);
-        }
-
-        // Achievement Types
-        $achievementTypes = [
-            ['name' => 'Juara kelas', 'category' => 'akademik', 'points' => 10],
-            ['name' => 'Juara lomba tingkat kabupaten', 'category' => 'akademik', 'points' => 15],
-            ['name' => 'Juara lomba tingkat provinsi', 'category' => 'akademik', 'points' => 20],
-            ['name' => 'Juara lomba tingkat nasional', 'category' => 'akademik', 'points' => 30],
-            ['name' => 'Aktif organisasi OSIS', 'category' => 'non_akademik', 'points' => 10],
-            ['name' => 'Menjadi ketua kelas teladan', 'category' => 'karakter', 'points' => 10],
-            ['name' => 'Membantu korban bencana', 'category' => 'karakter', 'points' => 15],
-        ];
-        foreach ($achievementTypes as $at) {
-            AchievementType::create($at);
         }
 
         // === CREATE USERS ===
@@ -209,8 +193,8 @@ class DatabaseSeeder extends Seeder
                 'address' => 'Jl. Siswa No. ' . ($i + 1),
                 'parent_name' => $sn['parent'],
                 'parent_phone' => $sn['parent_phone'],
-                'initial_points' => 100,
-                'current_points' => 100,
+                'initial_points' => 0,
+                'current_points' => 0,
             ]);
         }
 
@@ -227,42 +211,16 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Pelanggaran tercatat oleh Guru BK.',
                 'points_deducted' => $vt->points,
             ]);
-            $students[$si]->current_points -= $vt->points;
+            $students[$si]->current_points += $vt->points;
             $students[$si]->save();
             PointHistory::create([
                 'student_id' => $students[$si]->id,
                 'type' => 'violation',
                 'reference_id' => $violation->id,
-                'points' => -$vt->points,
+                'points' => $vt->points,
                 'balance_after' => $students[$si]->current_points,
                 'description' => 'Pelanggaran: ' . $vt->name,
                 'date' => $violation->date,
-            ]);
-        }
-
-        // Demo: Achievements for students 3-5
-        $achievementTypeIds = AchievementType::pluck('id')->toArray();
-        foreach ([3, 4, 5] as $si) {
-            $atId = $achievementTypeIds[array_rand($achievementTypeIds)];
-            $at = AchievementType::find($atId);
-            $achievement = Achievement::create([
-                'student_id' => $students[$si]->id,
-                'achievement_type_id' => $atId,
-                'recorded_by' => $guruBK1->id,
-                'date' => now()->subDays(rand(1, 30)),
-                'description' => 'Prestasi tercatat.',
-                'points_added' => $at->points,
-            ]);
-            $students[$si]->current_points += $at->points;
-            $students[$si]->save();
-            PointHistory::create([
-                'student_id' => $students[$si]->id,
-                'type' => 'achievement',
-                'reference_id' => $achievement->id,
-                'points' => $at->points,
-                'balance_after' => $students[$si]->current_points,
-                'description' => 'Prestasi: ' . $at->name,
-                'date' => $achievement->date,
             ]);
         }
 

@@ -11,7 +11,7 @@
 
     <!-- Quick Stats row -->
     <div class="row g-4 mb-4">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-primary me-3">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-warning me-3">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-danger me-3">
@@ -48,20 +48,6 @@
                     <div>
                         <h6 class="text-muted mb-1">Pelanggaran Catat</h6>
                         <h3 class="fw-bold m-0">{{ $totalViolations }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card border-0 glass-card p-3">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon-box stat-icon-success me-3">
-                        <i class="bi bi-trophy-fill"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1">Prestasi Siswa</h6>
-                        <h3 class="fw-bold m-0">{{ $totalAchievements }}</h3>
                     </div>
                 </div>
             </div>
@@ -119,7 +105,7 @@
                                     <td>
                                         <span class="badge badge-custom badge-{{ $violation->violationType->category }}">{{ $violation->violationType->name }}</span>
                                     </td>
-                                    <td class="text-danger fw-bold">-{{ $violation->points_deducted }}</td>
+                                    <td class="text-danger fw-bold">+{{ $violation->points_deducted }}</td>
                                 </tr>
                             @empty
                                 <tr>

@@ -66,11 +66,11 @@
                             <td class="fw-bold text-dark">{{ $student->user->name }}</td>
                             <td>{{ $student->schoolClass->full_name ?? '-' }}</td>
                             <td>{{ $student->initial_points }}</td>
-                            <td class="fw-bold text-{{ $student->current_points >= 75 ? 'success' : ($student->current_points >= 50 ? 'warning' : 'danger') }}">{{ $student->current_points }}</td>
+                            <td class="fw-bold text-{{ $student->current_points <= 25 ? 'success' : ($student->current_points <= 50 ? 'warning' : 'danger') }}">{{ $student->current_points }}</td>
                             <td>
-                                @if($student->current_points >= 75)
-                                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill"><i class="bi bi-shield-check me-1"></i> Sangat Baik</span>
-                                @elseif($student->current_points >= 50)
+                                @if($student->current_points <= 25)
+                                    <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill"><i class="bi bi-shield-check me-1"></i> Aman</span>
+                                @elseif($student->current_points <= 50)
                                     <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill"><i class="bi bi-shield-exclamation me-1"></i> Peringatan</span>
                                 @else
                                     <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill"><i class="bi bi-shield-slash me-1"></i> Kritis</span>

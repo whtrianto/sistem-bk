@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('parent_phone', 20)->nullable();
             $table->text('parent_address')->nullable();
             $table->string('photo')->nullable();
-            $table->integer('initial_points')->default(100);
-            $table->integer('current_points')->default(100);
+            $table->integer('initial_points')->default(0);
+            $table->integer('current_points')->default(0);
             $table->timestamps();
         });
     }

@@ -68,8 +68,8 @@ class StudentController extends Controller
             'parent_name' => $request->parent_name,
             'parent_phone' => $request->parent_phone,
             'parent_address' => $request->parent_address,
-            'initial_points' => 100,
-            'current_points' => 100,
+            'initial_points' => 0,
+            'current_points' => 0,
         ]);
 
         return redirect()->route('students.index')->with('success', 'Data siswa berhasil ditambahkan.');
@@ -77,7 +77,7 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        $student->load('user', 'schoolClass', 'violations.violationType', 'achievements.achievementType', 'counselings.category', 'pointHistories');
+        $student->load('user', 'schoolClass', 'violations.violationType', 'counselings.category', 'pointHistories');
         return view('students.show', compact('student'));
     }
 

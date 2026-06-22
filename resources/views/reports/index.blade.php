@@ -17,7 +17,7 @@
 
     <!-- Quick Stats Cards Row -->
     <div class="row g-4 mb-4">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-danger me-3">
@@ -31,21 +31,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card border-0 glass-card p-3">
-                <div class="d-flex align-items-center">
-                    <div class="stat-icon-box stat-icon-success me-3">
-                        <i class="bi bi-trophy-fill"></i>
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1">Total Prestasi</h6>
-                        <h3 class="fw-bold m-0">{{ $totalStats['achievements'] }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-primary me-3">
@@ -59,7 +45,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card border-0 glass-card p-3">
                 <div class="d-flex align-items-center">
                     <div class="stat-icon-box stat-icon-secondary me-3">
@@ -117,9 +103,8 @@
                 <div class="p-3 bg-light rounded-4">
                     <h6 class="fw-bold text-secondary mb-2">Pedoman Tindak Lanjut:</h6>
                     <ul class="m-0 fs-7 text-secondary">
-                        <li>Pastikan siswa dengan skor poin kritis (< 50) diberikan sesi konseling pribadi terarah.</li>
+                        <li>Pastikan siswa dengan skor poin kritis (> 50) diberikan sesi konseling pribadi terarah.</li>
                         <li>Notifikasi pemanggilan orang tua dikirimkan otomatis melalui menu <strong>Surat Panggilan</strong>.</li>
-                        <li>Siswa berprestasi dengan kenaikan poin kedisiplinan berhak diajukan dalam usulan beasiswa sekolah.</li>
                     </ul>
                 </div>
             </div>
@@ -134,10 +119,9 @@
     document.addEventListener('DOMContentLoaded', function() {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 
-        // Monthly trends chart (Line chart comparing Violations, Achievements, Counselings)
+        // Monthly trends chart (Line chart comparing Violations, Counselings)
         const trendCtx = document.getElementById('monthlyTrendChart').getContext('2d');
         const vData = @json($monthlyViolations);
-        const aData = @json($monthlyAchievements);
         const cData = @json($monthlyCounselings);
 
         new Chart(trendCtx, {
@@ -149,14 +133,6 @@
                         label: 'Pelanggaran',
                         data: vData,
                         borderColor: '#EF4444',
-                        backgroundColor: 'transparent',
-                        borderWidth: 3,
-                        tension: 0.3
-                    },
-                    {
-                        label: 'Prestasi',
-                        data: aData,
-                        borderColor: '#10B981',
                         backgroundColor: 'transparent',
                         borderWidth: 3,
                         tension: 0.3

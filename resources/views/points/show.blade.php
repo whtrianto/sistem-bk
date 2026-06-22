@@ -24,8 +24,8 @@
                 <p class="text-muted mb-4">{{ $student->nis }} &bull; Kelas {{ $student->schoolClass->full_name }}</p>
 
                 <div class="p-3 bg-light rounded-4 mb-4">
-                    <h6 class="text-muted mb-2">Skor Kredit Saat Ini</h6>
-                    <h1 class="fw-bold m-0 text-{{ $student->current_points >= 75 ? 'success' : ($student->current_points >= 50 ? 'warning' : 'danger') }}">
+                    <h6 class="text-muted mb-2">Poin Pelanggaran</h6>
+                    <h1 class="fw-bold m-0 text-{{ $student->current_points <= 25 ? 'success' : ($student->current_points <= 50 ? 'warning' : 'danger') }}">
                         {{ $student->current_points }}
                     </h1>
                 </div>
@@ -45,12 +45,11 @@
                 
                 <div class="timeline">
                     @forelse($histories as $log)
-                        <div class="timeline-item">
-                            <div class="timeline-marker {{ $log->points < 0 ? 'deduction' : 'addition' }}"></div>
+                            <div class="timeline-marker deduction"></div>
                             <div class="d-flex align-items-center justify-content-between mb-1">
                                 <span class="fw-bold text-dark">{{ $log->description }}</span>
-                                <span class="fw-bold text-{{ $log->points < 0 ? 'danger' : 'success' }}">
-                                    {{ $log->points < 0 ? '' : '+' }}{{ $log->points }} Poin
+                                <span class="fw-bold text-danger">
+                                    +{{ $log->points }} Poin
                                 </span>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
@@ -61,7 +60,7 @@
                     @empty
                         <div class="text-center py-5 text-muted">
                             <i class="bi bi-shield-check fs-2 mb-2 d-block text-success"></i>
-                            Poin masih utuh 100%. Belum ada pencatatan pelanggaran atau prestasi untuk siswa ini.
+                            Poin masih 0. Belum ada pencatatan pelanggaran untuk siswa ini.
                         </div>
                     @endforelse
                 </div>

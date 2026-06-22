@@ -6,7 +6,6 @@ use App\Models\Student;
 use App\Models\Counseling;
 use App\Models\CounselingSchedule;
 use App\Models\Violation;
-use App\Models\Achievement;
 use App\Models\User;
 use App\Models\SchoolClass;
 use App\Models\CounselingCategory;
@@ -56,7 +55,6 @@ class DashboardController extends Controller
             'recentViolations' => Violation::with('student.user', 'violationType')
                 ->latest()->take(5)->get(),
             'totalViolations' => Violation::count(),
-            'totalAchievements' => Achievement::count(),
             // Monthly counseling chart data
             'monthlyCounselings' => array_values(array_replace(array_fill(1, 12, 0), Counseling::select(
                     DB::raw('MONTH(date) as month'),
@@ -85,7 +83,6 @@ class DashboardController extends Controller
             'recentViolations' => Violation::whereIn('student_id', $studentIds)
                 ->with('student.user', 'violationType')->latest()->take(5)->get(),
             'totalViolations' => Violation::whereIn('student_id', $studentIds)->count(),
-            'totalAchievements' => Achievement::whereIn('student_id', $studentIds)->count(),
             'avgPoints' => Student::whereIn('id', $studentIds)->avg('current_points') ?? 0,
         ];
         return view('dashboard.wali-kelas', $data);
@@ -100,7 +97,6 @@ class DashboardController extends Controller
             'student' => $student,
             'currentPoints' => $student ? $student->current_points : 0,
             'totalViolations' => $student ? $student->violations()->count() : 0,
-            'totalAchievements' => $student ? $student->achievements()->count() : 0,
             'recentHistory' => $student ? $student->pointHistories()->latest()->take(10)->get() : collect(),
             'upcomingSchedules' => $student ? CounselingSchedule::where('student_id', $student->id)
                 ->where('date', '>=', today())
@@ -118,7 +114,6 @@ class DashboardController extends Controller
             'totalStudents' => Student::count(),
             'totalCounselings' => Counseling::count(),
             'totalViolations' => Violation::count(),
-            'totalAchievements' => Achievement::count(),
             // Monthly violation chart
             'monthlyViolations' => array_values(array_replace(array_fill(1, 12, 0), Violation::select(
                     DB::raw('MONTH(date) as month'),
