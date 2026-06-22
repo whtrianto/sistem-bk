@@ -1,10 +1,22 @@
 # Update 22 Juni 2026
-- Menghapus fitur prestasi dan mengubah point default jadi 0
+- Menghapus fitur prestasi 
+- Mengubah point default jadi 0
+- Menghapus kolom semester di tabel academic_years
+- Menyesuaikan tampilan dashboard
+- Mengatur reset poin siswa per tahun ajaran 
+- Menambah Popup detail pada catatan pelanggaran
+- Menambahkan NO. Urut di semua tabel
 - jalankan ini di database
 ```sql
+-- 1. Perbarui semua data lama yang sudah terlanjur masuk agar bernilai 0
+UPDATE `students` 
+SET `initial_points` = 0, 
+    `current_points` = 0;
+
+-- 2. Ubah aturan struktur tabel agar data baru ke depannya otomatis bernilai 0
 ALTER TABLE `students` 
-  ALTER COLUMN `initial_points` SET DEFAULT 0,
-  ALTER COLUMN `current_points` SET DEFAULT 0;
+  MODIFY COLUMN `initial_points` int NOT NULL DEFAULT 0,
+  MODIFY COLUMN `current_points` int NOT NULL DEFAULT 0;
 ```
 
 # Sistem Bimbingan Konseling & Poin Kredit SMK
