@@ -21,6 +21,7 @@ class AcademicYearController extends Controller
 
     public function store(Request $request)
     {
+        $request->merge(['semester' => $request->semester ?? 'ganjil']);
         $request->validate([
             'year' => 'required|string|max:10',
             'semester' => 'required|in:ganjil,genap',
@@ -49,6 +50,7 @@ class AcademicYearController extends Controller
 
     public function update(Request $request, AcademicYear $academicYear)
     {
+        $request->merge(['semester' => $request->semester ?? $academicYear->semester ?? 'ganjil']);
         $request->validate([
             'year' => 'required|string|max:10',
             'semester' => 'required|in:ganjil,genap',

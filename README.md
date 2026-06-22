@@ -1,3 +1,12 @@
+# Update 22 Juni 2026
+- Menghapus fitur prestasi dan mengubah point default jadi 0
+- jalankan ini di database
+```sql
+ALTER TABLE `students` 
+  ALTER COLUMN `initial_points` SET DEFAULT 0,
+  ALTER COLUMN `current_points` SET DEFAULT 0;
+```
+
 # Sistem Bimbingan Konseling & Poin Kredit SMK
 
 Sistem Informasi Manajemen Bimbingan Konseling (BK) dan Pencatatan Poin Kredit Kedisiplinan Siswa berbasis web untuk SMK. Sistem ini terintegrasi dengan **WhatsApp Gateway** (Fonnte API) untuk otomatisasi pengiriman notifikasi pelanggaran, pemanggilan orang tua, dan reminder jadwal konseling.

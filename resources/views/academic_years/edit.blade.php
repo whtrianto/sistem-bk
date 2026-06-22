@@ -31,13 +31,6 @@
                         <input type="text" name="year" id="year" class="form-control" required value="{{ old('year', $academicYear->year) }}">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="semester" class="form-label fw-semibold">Semester <span class="text-danger">*</span></label>
-                        <select name="semester" id="semester" class="form-select" required>
-                            <option value="ganjil" {{ old('semester', $academicYear->semester) == 'ganjil' ? 'selected' : '' }}>Ganjil</option>
-                            <option value="genap" {{ old('semester', $academicYear->semester) == 'genap' ? 'selected' : '' }}>Genap</option>
-                        </select>
-                    </div>
 
                     <div class="mb-3 form-check mt-3">
                         <input type="checkbox" name="is_active" class="form-check-input" id="is_active" value="1" {{ $academicYear->is_active ? 'checked' : '' }}>

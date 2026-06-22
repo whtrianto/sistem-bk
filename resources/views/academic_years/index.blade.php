@@ -16,7 +16,6 @@
                     <tr>
                         <th style="width: 60px;">No.</th>
                         <th>Tahun Ajaran</th>
-                        <th>Semester</th>
                         <th>Status</th>
                         <th class="text-center">Aksi</th>
                     </tr>
@@ -26,7 +25,6 @@
                         <tr>
                             <td>{{ $years->firstItem() + $loop->index }}</td>
                             <td class="fw-bold text-dark fs-5">{{ $year->year }}</td>
-                            <td class="text-capitalize">{{ $year->semester }}</td>
                             <td>
                                 @if($year->is_active)
                                     <span class="badge bg-success px-3 py-2 rounded-pill"><i class="bi bi-check-circle me-1"></i> Aktif</span>
@@ -53,7 +51,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center py-5 text-muted">Belum ada data tahun ajaran.</td>
+                            <td colspan="4" class="text-center py-5 text-muted">Belum ada data tahun ajaran.</td>
                         </tr>
                     @endforelse
                 </tbody>

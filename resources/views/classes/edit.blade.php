@@ -50,7 +50,7 @@
                         <select name="academic_year_id" id="academic_year_id" class="form-select" required>
                             @foreach($academicYears as $ay)
                                 <option value="{{ $ay->id }}" {{ old('academic_year_id', $class->academic_year_id) == $ay->id ? 'selected' : '' }}>
-                                    {{ $ay->year }} - {{ $ay->semester }}
+                                    {{ $ay->year }}
                                 </option>
                             @endforeach
                         </select>

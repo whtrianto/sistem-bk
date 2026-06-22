@@ -50,7 +50,7 @@
                             <option value="">Pilih Tahun Ajaran</option>
                             @foreach($academicYears as $ay)
                                 <option value="{{ $ay->id }}" {{ (old('academic_year_id') == $ay->id || $ay->is_active) ? 'selected' : '' }}>
-                                    {{ $ay->year }} - {{ $ay->semester }}
+                                    {{ $ay->year }}
                                 </option>
                             @endforeach
                         </select>

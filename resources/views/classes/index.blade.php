@@ -31,7 +31,7 @@
                             <td class="fw-bold text-dark">{{ $class->name }}</td>
                             <td>{{ $class->major ?? '-' }}</td>
                             <td>
-                                <span class="badge bg-light text-dark border px-2 py-1">{{ $class->academicYear->year }} ({{ $class->academicYear->semester }})</span>
+                                <span class="badge bg-light text-dark border px-2 py-1">{{ $class->academicYear->year }}</span>
                             </td>
                             <td>
                                 @if($class->waliKelas)
